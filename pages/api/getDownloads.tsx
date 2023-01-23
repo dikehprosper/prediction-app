@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer'
+import puppeteer from 'puppeteer';
 /* import {JSDOM} from 'jsdom'*/
 import { NextApiRequest, NextApiResponse } from 'next' 
 
