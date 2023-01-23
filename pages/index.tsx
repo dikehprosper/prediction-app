@@ -88,7 +88,7 @@ function getMostOccuring(){
         </div></div>):null} 
         <div className={styles.header}>
           <div className={styles.sitelink}><a href="https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201" 
-          target="_blank"  className={styles.sitelink1} >Go to site Used?</a> </div>
+          target="_blank" rel="noreferrer"  className={styles.sitelink1} >Go to site Used?</a> </div>
           <div className={styles.ifrme}>
             <div className={styles.header7}>Webscrapper built with NextJs</div>
           </div>
@@ -174,7 +174,7 @@ function getMostOccuring(){
                       color: "black",
                     };
                   }
-                  return   <div  className={styles.mainbody7} style={style} >{go}</div>
+                  return   <div  className={styles.mainbody7} style={style} key={index}>{go}</div>
                 })}
 
                 </div>
@@ -205,7 +205,7 @@ function getMostOccuring(){
                 <>
                   {" "}
                   <h3></h3>
-                  {frequentNumbers.map((go) => {
+                  {frequentNumbers.map((go, index) => {
                     let style;
                     if (
                       go === "1" ||
@@ -278,7 +278,7 @@ function getMostOccuring(){
                     }
 
                     return (
-                      <p className={styles.mainbody2} style={style}>
+                      <p className={styles.mainbody2} style={style} key={index}>
                         {go}
                       </p>
                     );
