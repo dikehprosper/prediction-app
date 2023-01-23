@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [frequentNumbers, setFrequentNumbers] = useState([]);
+  const [frequentNumbers, setFrequentNumbers] = useState<number[]>([]);
 
   const [downloads, setDownloads] = useState([]);
   const [instructions, setInstructions] = useState("");
@@ -25,6 +25,7 @@ function getMostOccuring(){
   }
 }
   const getDownloads = async () => {
+    setFrequentNumbers([]);
     setShow2(false);
     setDownloads2([]);
     getDownloads2();
@@ -59,13 +60,27 @@ function getMostOccuring(){
   const firstSixElement = downloads.slice(0, 6);
 
   useEffect(() => {
-    const frequency = downloads.reduce((acc, val) => {
-      acc[val] = (acc[val] || 0) + 1;
-      return acc;
-    }, {});
-    setFrequentNumbers(
-      Object.keys(frequency).filter((val) => frequency[val] > 6)
-    );
+ 
+      let downloadCounts: { [key: number]: number } = {};
+      let frequentDownloads: number[] = [];
+    
+      // Create a dictionary to store the count of each number
+      for (let i = 0; i < downloads.length; i++) {
+        if (downloadCounts[downloads[i]] === undefined) {
+          downloadCounts[downloads[i]] = 1;
+        } else {
+          downloadCounts[downloads[i]]++;
+        }
+      }
+    
+      // Iterate over the dictionary and add numbers that appear more than 2 times to frequentDownloads array
+      for (let download in downloadCounts) {
+        if (downloadCounts[download] > 2) {
+          frequentNumbers.push(parseInt(download));
+        }
+      }
+    
+  
   }, [downloads]);
   
   
@@ -208,69 +223,69 @@ function getMostOccuring(){
                   {frequentNumbers.map((go, index) => {
                     let style;
                     if (
-                      go === "1" ||
-                      go === "4" ||
-                      go === "7" ||
-                      go === "10" ||
-                      go === "13" ||
-                      go === "16" ||
-                      go === "19" ||
-                      go === "22" ||
-                      go === "25" ||
-                      go === "28" ||
-                      go === "31" ||
-                      go === "34" ||
-                      go === "37" ||
-                      go === "40" ||
-                      go === "43" ||
-                      go === "46"
+                      go === 1 ||
+                      go === 4 ||
+                      go === 7 ||
+                      go === 10 ||
+                      go === 13 ||
+                      go === 16 ||
+                      go === 19 ||
+                      go === 22 ||
+                      go === 25 ||
+                      go === 28 ||
+                      go === 31 ||
+                      go === 34 ||
+                      go === 37 ||
+                      go === 40 ||
+                      go === 43 ||
+                      go === 46
                     ) {
                       style = {
                         backgroundColor: "red",
                       };
                     } else if (
-                      go === "2" ||
-                      go === "5" ||
-                      go === "8" ||
-                      go === "11" ||
-                      go === "14" ||
-                      go === "17" ||
-                      go === "20" ||
-                      go === "23" ||
-                      go === "26" ||
-                      go === "29" ||
-                      go === "32" ||
-                      go === "35" ||
-                      go === "38" ||
-                      go === "41" ||
-                      go === "44" ||
-                      go === "47"
+                      go === 2 ||
+                      go === 5 ||
+                      go === 8 ||
+                      go === 11 ||
+                      go === 14 ||
+                      go === 17 ||
+                      go === 20 ||
+                      go === 23 ||
+                      go === 26 ||
+                      go === 29 ||
+                      go === 32 ||
+                      go === 35 ||
+                      go === 38 ||
+                      go === 41 ||
+                      go === 44 ||
+                      go === 47
                     ) {
                       style = {
                         backgroundColor: "blue",
                       };
                     } else if (
-                      go === "3" ||
-                      go === "6" ||
-                      go === "9" ||
-                      go === "12" ||
-                      go === "15" ||
-                      go === "18" ||
-                      go === "21" ||
-                      go === "24" ||
-                      go === "27" ||
-                      go === "30" ||
-                      go === "33" ||
-                      go === "36" ||
-                      go === "39" ||
-                      go === "42" ||
-                      go === "45" ||
-                      go === "48"
+                      go === 3 ||
+                      go === 6 ||
+                      go === 9 ||
+                      go === 12 ||
+                      go === 15 ||
+                      go === 18 ||
+                      go === 21 ||
+                      go === 24 ||
+                      go === 27 ||
+                      go === 30 ||
+                      go === 33 ||
+                      go === 36 ||
+                      go === 39||
+                      go === 42 ||
+                      go === 45 ||
+                      go === 48
                     ) {
                       style = {
                         backgroundColor: "green",
                       };
-                    } else if (go === "49") {
+                    } else if (go === 49) {
                       style = {
                         backgroundColor: "#c9d916",
                         color: "black",
