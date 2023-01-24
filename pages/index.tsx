@@ -33,7 +33,7 @@ function getMostOccuring(){
     setDownloads([]);
     setInstructions("Most Occuring");
     setInstructions2("....Loading");
-    const res = await fetch("/api/getDownloads");
+    const res = await fetch("/prediction-app/pages/api/getDownloads");
     if(res.status === 200){
       setShow(false)
       }else{
@@ -50,7 +50,7 @@ function getMostOccuring(){
 
 
   const getDownloads2 = async () => {
-    const res2 = await fetch("/api/getDownloads2");
+    const res2 = await fetch("/prediction-app/pages/api/getDownloads2");
     const downloads2 = await res2.json();
     setDownloads2(downloads2);
   };
