@@ -25,6 +25,7 @@ function getMostOccuring(){
   }
 }
   const getDownloads = async () => {
+   
     setFrequentNumbers([]);
     setShow2(false);
     setDownloads2([]);
@@ -75,12 +76,13 @@ function getMostOccuring(){
       // Iterate over the dictionary and add numbers that appear more than 2 times to frequentDownloads array
       for (let download in downloadCounts) {
         if (downloadCounts[download] > 2) {
+          console.log(parseInt(download));
           frequentNumbers.push(parseInt(download));
         }
       }
     
   
-  }, [downloads]);
+  });
   
   
   function closeShow(){
@@ -89,7 +91,6 @@ function getMostOccuring(){
     setShow(false);
   }
 
- 
 
   
 
