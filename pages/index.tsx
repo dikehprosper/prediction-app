@@ -34,7 +34,6 @@ function getMostOccuring(){
     setInstructions("Most Occuring");
     setInstructions2("....Loading");
     const res = await fetch("/api/getDownloads");
-    //const res2 = await fetch('http://localhost:3000/api/getDownloads2');
     if(res.status === 200){
       setShow(false)
       }else{
