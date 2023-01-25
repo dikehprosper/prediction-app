@@ -25,10 +25,6 @@ concurrency:
 
 jobs:
   # Build job
-   - name: install chromium
-    run: |
-     sudo apt-get update
-    sudo apt-get install -y chromium-browser
   build:
     runs-on: ubuntu-latest
     steps:
@@ -56,12 +52,6 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          
-          - run: |
-    echo "::set-env name=PUPPETEER_SKIP_CHROMIUM_DOWNLOAD::true"
-    echo "::add-path::$(npm bin)"
-
-
       - name: Setup Pages
         uses: actions/configure-pages@v2
         with:
@@ -102,8 +92,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-        
-       env:
-    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
-
-
