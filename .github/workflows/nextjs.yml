@@ -56,6 +56,11 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          
+          - run: |
+    echo "::set-env name=PUPPETEER_SKIP_CHROMIUM_DOWNLOAD::true"
+    echo "::add-path::$(npm bin)"
+
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
@@ -98,5 +103,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
         
-       
+       env:
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+
 
